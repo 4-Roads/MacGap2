@@ -9,7 +9,6 @@
 #import "WindowController.h"
 #import "WebViewDelegate.h"
 #import "JSON.h"
-#import "UrlProtocolHandler.h"
 
 @interface WindowController ()
 
@@ -54,8 +53,6 @@
     [super windowDidLoad];
  
     [self.webView setMainFrameURL:[self.url absoluteString]];
-   
-    
 }
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {

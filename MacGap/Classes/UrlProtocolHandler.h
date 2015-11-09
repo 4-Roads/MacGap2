@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-NSString *MAIN_DOMAIN;
-
 @interface URLProtocolHandler : NSURLProtocol
 
 @property (nonatomic, strong) NSURLConnection *connection;

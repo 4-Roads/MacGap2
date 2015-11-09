@@ -34,22 +34,6 @@
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
 {
-    NSString *requestPath = [[request URL] absoluteString];
-    
-    if([requestPath hasPrefix:@"http"])
-    {
-        if(MAIN_DOMAIN != nil && [requestPath rangeOfString: MAIN_DOMAIN].location == NSNotFound)
-        {
-            NSURL *externalUrl = [NSURL URLWithString:requestPath];
-            [[NSWorkspace sharedWorkspace] openURL:externalUrl];
-            return nil;
-        }
-    } else if([requestPath hasPrefix:@"mailto:"])
-    {
-        NSURL *externalUrl = [NSURL URLWithString:requestPath];
-        [[NSWorkspace sharedWorkspace] openURL:externalUrl];
-        return nil;
-    }
     return request;
 }
 

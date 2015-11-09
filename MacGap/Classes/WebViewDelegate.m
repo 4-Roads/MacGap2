@@ -26,6 +26,40 @@
     return self;
 }
 
+- (void)webView:(WebView *)sender
+decidePolicyForNavigationAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request frame:(WebFrame *)frame
+decisionListener:(id<WebPolicyDecisionListener>)listener
+{
+    WebNavigationType navigationType = [[actionInformation valueForKey:@"WebActionNavigationTypeKey"] integerValue];
+    
+    NSLog(@"decidePolicyForNavigationAction %ld", (long)navigationType);
+    
+    if(navigationType == WebNavigationTypeLinkClicked){
+        
+        NSString *requestPath = [[request URL] absoluteString];
+        
+        if([requestPath hasPrefix:@"http"])
+        {
+            if(MAIN_DOMAIN != nil && [requestPath rangeOfString: MAIN_DOMAIN].location == NSNotFound)
+            {
+                NSURL *externalUrl = [NSURL URLWithString:requestPath];
+                [[NSWorkspace sharedWorkspace] openURL:externalUrl];
+                [listener ignore];
+                return;
+            }
+        } else if([requestPath hasPrefix:@"mailto:"])
+        {
+            NSURL *externalUrl = [NSURL URLWithString:requestPath];
+            [[NSWorkspace sharedWorkspace] openURL:externalUrl];
+            [listener ignore];
+            return;
+        }
+        
+    }
+
+    [listener use];
+}
 
 - (void)webView:(WebView *)sender runOpenPanelForFileButtonWithResultListener:(id < WebOpenPanelResultListener >)resultListener allowMultipleFiles:(BOOL)allowMultipleFiles{
     

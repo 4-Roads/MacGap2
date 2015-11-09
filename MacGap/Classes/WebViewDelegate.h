@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 
+
+NSString *MAIN_DOMAIN;
+
+
 @class WindowController, Window, Menu, App;
 
 @interface WebViewDelegate : NSObject {
