@@ -57,7 +57,7 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     static NSUInteger requestCount = 0;
-    NSLog(@"Request #%lu: URL = %@", (unsigned long)requestCount++, request.URL.absoluteString);
+    //NSLog(@"Request #%lu: URL = %@", (unsigned long)requestCount++, request.URL.absoluteString);
     return NO;
 }
 

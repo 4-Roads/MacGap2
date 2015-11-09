@@ -40,7 +40,7 @@
 
     [NSURLProtocol registerClass:URLProtocolHandler.class];
     
-    NSLog(@"didFinishLaunchingWithOptions: notification name %@", name);
+    //NSLog(@"didFinishLaunchingWithOptions: notification name %@", name);
     
 }
 
@@ -61,7 +61,7 @@
 
 {
     
-    NSLog(@"%@ with token = %@", NSStringFromSelector(_cmd), deviceToken);
+    //NSLog(@"%@ with token = %@", NSStringFromSelector(_cmd), deviceToken);
     
     // store the token, the javascript wrapper will send it when the application starts using the index.html
     
@@ -118,7 +118,7 @@
 
 {
     
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    //NSLog(@"%@", NSStringFromSelector(_cmd));
     
     NSDictionary *apsDictionary = [userInfo valueForKey:@"aps"];
     
