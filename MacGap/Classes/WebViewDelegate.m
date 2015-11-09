@@ -26,14 +26,11 @@
     return self;
 }
 
-- (void)webView:(WebView *)sender
-decidePolicyForNavigationAction:(NSDictionary *)actionInformation
-        request:(NSURLRequest *)request frame:(WebFrame *)frame
-decisionListener:(id<WebPolicyDecisionListener>)listener
+- (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener
 {
     WebNavigationType navigationType = [[actionInformation valueForKey:@"WebActionNavigationTypeKey"] integerValue];
     
-    NSLog(@"decidePolicyForNavigationAction %ld", (long)navigationType);
+    //NSLog(@"decidePolicyForNavigationAction %ld", (long)navigationType);
     
     if(navigationType == WebNavigationTypeLinkClicked){
         
