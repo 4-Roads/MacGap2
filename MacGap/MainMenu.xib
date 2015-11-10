@@ -16,9 +16,9 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="Telligent Desktop" id="1Xt-HY-uBw" userLabel="Telligent Desktop App">
+                <menuItem title="The Ship" id="1Xt-HY-uBw" userLabel="Telligent Desktop App">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Telligent Desktop" systemMenu="apple" id="uQy-DD-JDr">
+                    <menu key="submenu" title="The Ship" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
                             <menuItem title="About" id="5kV-Vb-QxS" userLabel="About">
                                 <modifierMask key="keyEquivalentModifierMask"/>
