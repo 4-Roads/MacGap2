@@ -42,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		104F04401BFA167D007BFC50 /* The Ship.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "The Ship.entitlements"; sourceTree = "<group>"; };
 		10EE92951B99BECF008F22F8 /* UrlProtocolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlProtocolHandler.m; sourceTree = "<group>"; };
 		10EE92971B99BEEE008F22F8 /* UrlProtocolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlProtocolHandler.h; sourceTree = "<group>"; };
 		2237E646192B0177001E1393 /* The Ship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Ship.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +125,7 @@
 		2237E63D192B0177001E1393 = {
 			isa = PBXGroup;
 			children = (
+				104F04401BFA167D007BFC50 /* The Ship.entitlements */,
 				2237E6EE192BAF85001E1393 /* public */,
 				22B1CEF31937734B00D2C294 /* MacGap */,
 				2237E648192B0177001E1393 /* Frameworks */,
@@ -296,6 +298,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -466,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "The Ship.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -484,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "The Ship.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
