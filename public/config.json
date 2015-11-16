@@ -1,5 +1,5 @@
 {
-    "main":"http://dev.ship.wearesocial.net/login?ReturnUrl=%2F&overridekey=DFDF871F-AC95-4F8C-A308-34BB6FE6DB35",
+    "main":"https://ship.wearesocial.net/login?ReturnUrl=%2F",
     "maindomain":"wearesocial.net",
     "name": "Four Roads Telligent Desktop",
     "description": "",
@@ -16,7 +16,7 @@
                 "File" : "File"
                  },
     "window" : {
-        "title" : "Telligent Desktop",
+        "title" : "The Ship",
         "width" : 1024,
         "height" : 900,
         "position": "center",

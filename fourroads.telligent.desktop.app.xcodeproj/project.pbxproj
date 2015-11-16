@@ -44,7 +44,7 @@
 /* Begin PBXFileReference section */
 		10EE92951B99BECF008F22F8 /* UrlProtocolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlProtocolHandler.m; sourceTree = "<group>"; };
 		10EE92971B99BEEE008F22F8 /* UrlProtocolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlProtocolHandler.h; sourceTree = "<group>"; };
-		2237E646192B0177001E1393 /* Telligent Desktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telligent Desktop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2237E646192B0177001E1393 /* The Ship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Ship.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2237E649192B0177001E1393 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2237E64C192B0177001E1393 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2237E64D192B0177001E1393 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -134,7 +134,7 @@
 		2237E647192B0177001E1393 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2237E646192B0177001E1393 /* Telligent Desktop.app */,
+				2237E646192B0177001E1393 /* The Ship.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 			);
 			name = "Telligent Desktop";
 			productName = MG;
-			productReference = 2237E646192B0177001E1393 /* Telligent Desktop.app */;
+			productReference = 2237E646192B0177001E1393 /* The Ship.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

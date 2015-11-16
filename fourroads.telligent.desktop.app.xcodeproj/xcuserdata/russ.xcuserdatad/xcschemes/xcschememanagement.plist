@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Telligent Desktop Release.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>fourroads.telligent.desktop.app.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
