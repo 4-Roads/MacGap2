@@ -36,11 +36,10 @@
     // Register for push notifications.
     [NSApp registerForRemoteNotificationTypes:NSRemoteNotificationTypeBadge];
     
-    NSString *name = [aNotification name];
-
-    [NSURLProtocol registerClass:URLProtocolHandler.class];
-    
+    //NSString *name = [aNotification name];
     //NSLog(@"didFinishLaunchingWithOptions: notification name %@", name);
+    [NSURLProtocol registerClass:URLProtocolHandler.class];
+
     
 }
 
