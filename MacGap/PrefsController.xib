@@ -14,14 +14,14 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" documentModal="YES"/>
-            <rect key="contentRect" x="952" y="528" width="480" height="119"/>
+            <rect key="contentRect" x="952" y="528" width="748" height="62"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="119"/>
+                <rect key="frame" x="0.0" y="0.0" width="748" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="suF-BX-Tac">
-                        <rect key="frame" x="126" y="77" width="334" height="22"/>
+                        <rect key="frame" x="126" y="20" width="602" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Enter community URL" drawsBackground="YES" usesSingleLineMode="YES" id="mfJ-e0-XQk">
                             <font key="font" metaFont="system"/>
@@ -33,7 +33,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1Q-m9-tno">
-                        <rect key="frame" x="14" y="80" width="106" height="17"/>
+                        <rect key="frame" x="14" y="23" width="106" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Community URL:" id="7go-Kq-Zfg">
                             <font key="font" metaFont="system"/>
@@ -47,7 +47,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="739" y="342.5"/>
+            <point key="canvasLocation" x="873" y="314"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="Z86-hq-rWF"/>
     </objects>

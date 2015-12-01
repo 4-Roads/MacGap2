@@ -66,8 +66,10 @@
     [self loadPreferences];
     
     self = [super initWithWindowNibName:@"MainWindow"];
+    
+    self.url = [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"]];
   
-    self.url = [NSURL URLWithString:self.settings[@"main"] ];
+    //self.url = [NSURL URLWithString:self.settings[@"main"] ];
     
     [self.window setFrameAutosaveName:@"MacGapWindow"];
     
@@ -106,11 +108,35 @@
     self.settings = config;
     
     if(MAIN_DOMAIN == nil){
-        NSString* mainDomain = [config objectForKey:@"maindomain"];
-        MAIN_DOMAIN = [[NSString alloc] initWithString:mainDomain];
+        //NSString* mainDomain = [config objectForKey:@"maindomain"];
+        //MAIN_DOMAIN = [[NSString alloc] initWithString:mainDomain];
+        
+        NSString* comunityUrl =  [[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"];
+        NSURL* url = [NSURL URLWithString:comunityUrl];
+        
+        NSLog(url.host);
+        
+        NSArray *hostParts = [[NSArray alloc]init];
+        hostParts = [url.host componentsSeparatedByString:@"."];
+        
+        NSInteger partsCount = [hostParts count];
+        if (partsCount > 2) {
+            MAIN_DOMAIN = [NSString stringWithFormat:@"%@.%@", [hostParts objectAtIndex:(partsCount-2)], [hostParts objectAtIndex:(partsCount-1)]];
+        } else if (partsCount == 2) {
+            MAIN_DOMAIN = [[NSString alloc] initWithString:url.host];
+        } else {
+            NSLog(@"Invalid community URL");
+        }
+        NSLog(MAIN_DOMAIN);
     }
 }
 
+- (BOOL) validateUrl: (NSString *) candidate {
+    NSString *urlRegEx =
+    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    return [urlTest evaluateWithObject:candidate];
+}
 
 - (void) awakeFromNib
 {
