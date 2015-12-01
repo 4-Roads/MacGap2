@@ -37,6 +37,8 @@
 		22B1CF421937734B00D2C294 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22B1CF271937734B00D2C294 /* Images.xcassets */; };
 		22B1CF431937734B00D2C294 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B1CF281937734B00D2C294 /* main.m */; };
 		22BE36ED193B7F8800D8199F /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BE36EC193B7F8800D8199F /* Defaults.m */; };
+		D28192F51C0DC3A7007FC805 /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28192F31C0DC3A7007FC805 /* PrefsController.m */; };
+		D28192F61C0DC3A7007FC805 /* PrefsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28192F41C0DC3A7007FC805 /* PrefsController.xib */; };
 		D2ABDBEF1BF0797A005BA8BD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2ABDBEE1BF0797A005BA8BD /* MainMenu.xib */; };
 		D2ABDBF11BF079B2005BA8BD /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2ABDBF01BF079B2005BA8BD /* MainWindow.xib */; };
 /* End PBXBuildFile section */
@@ -104,6 +106,9 @@
 		22B1CF2A1937734B00D2C294 /* fourroads.telligent.desktop.app-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "fourroads.telligent.desktop.app-Prefix.pch"; sourceTree = "<group>"; };
 		22BE36EB193B7F8800D8199F /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		22BE36EC193B7F8800D8199F /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
+		D28192F21C0DC3A7007FC805 /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsController.h; path = ../PrefsController.h; sourceTree = "<group>"; };
+		D28192F31C0DC3A7007FC805 /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsController.m; path = ../PrefsController.m; sourceTree = "<group>"; };
+		D28192F41C0DC3A7007FC805 /* PrefsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsController.xib; sourceTree = "<group>"; };
 		D2ABDBEE1BF0797A005BA8BD /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		D2ABDBF01BF079B2005BA8BD /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +196,8 @@
 		22B1CEFF1937734B00D2C294 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D28192F21C0DC3A7007FC805 /* PrefsController.h */,
+				D28192F31C0DC3A7007FC805 /* PrefsController.m */,
 				22B1CF001937734B00D2C294 /* Commands */,
 				22B1CF1C1937734B00D2C294 /* Utils.h */,
 				22B1CF1D1937734B00D2C294 /* Utils.m */,
@@ -258,6 +265,7 @@
 		22B1CF46193773BA00D2C294 /* Interface Builder */ = {
 			isa = PBXGroup;
 			children = (
+				D28192F41C0DC3A7007FC805 /* PrefsController.xib */,
 				D2ABDBF01BF079B2005BA8BD /* MainWindow.xib */,
 				D2ABDBEE1BF0797A005BA8BD /* MainMenu.xib */,
 			);
@@ -328,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2237E6EF192BAF85001E1393 /* public in Resources */,
+				D28192F61C0DC3A7007FC805 /* PrefsController.xib in Resources */,
 				D2ABDBEF1BF0797A005BA8BD /* MainMenu.xib in Resources */,
 				D2ABDBF11BF079B2005BA8BD /* MainWindow.xib in Resources */,
 				22B1CF401937734B00D2C294 /* Credits.rtf in Resources */,
@@ -351,6 +360,7 @@
 				22B1CF381937734B00D2C294 /* MenuItem.m in Sources */,
 				22B1CF301937734B00D2C294 /* App.m in Sources */,
 				22B1CF371937734B00D2C294 /* Menu.m in Sources */,
+				D28192F51C0DC3A7007FC805 /* PrefsController.m in Sources */,
 				22A676E71944B140002F81FB /* File.m in Sources */,
 				22B1CF3C1937734B00D2C294 /* Window.m in Sources */,
 				22B1CF3F1937734B00D2C294 /* WindowController.m in Sources */,

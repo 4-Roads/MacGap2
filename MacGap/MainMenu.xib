@@ -29,7 +29,7 @@
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                             <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                 <connections>
-                                    <action selector="makeKeyAndOrderFront:" target="UUd-yG-oil" id="Vgw-Io-cCG"/>
+                                    <action selector="showPrefPanel:" target="-1" id="x0m-hm-wqS"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -633,43 +633,6 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="UUd-yG-oil" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
-            <rect key="contentRect" x="272" y="172" width="639" height="57"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <view key="contentView" id="q17-3H-1Fq">
-                <rect key="frame" x="0.0" y="0.0" width="639" height="57"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Dw-hW-lGG">
-                        <rect key="frame" x="13" y="20" width="106" height="17"/>
-                        <animations/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Community URL:" id="aPU-6v-Yya">
-                            <font key="font" metaFont="system"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2B-ph-CW8">
-                        <rect key="frame" x="125" y="17" width="494" height="22"/>
-                        <animations/>
-                        <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="Community URL" placeholderString="Enter community URL" drawsBackground="YES" usesSingleLineMode="YES" id="28x-xG-Qtf">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="IUx-qx-Rrh" name="value" keyPath="values.communityUrl" id="AYw-KO-bXH">
-                                <dictionary key="options">
-                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </textField>
-                </subviews>
-                <animations/>
-            </view>
-            <point key="canvasLocation" x="1129.5" y="106.5"/>
-        </window>
         <userDefaultsController representsSharedInstance="YES" id="IUx-qx-Rrh"/>
     </objects>
 </document>

@@ -9,6 +9,7 @@
 #import "WindowController.h"
 #import "UrlProtocolHandler.h"
 #import "AppDelegate.h"
+#import "PrefsController.h"
 
 @implementation AppDelegate
 
@@ -26,21 +27,58 @@
     return YES;
 }
 
-- (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
-    self.windowController = [[WindowController alloc] init];
-    [self.windowController setWindowParams];
+- (IBAction) showPrefPanel: (id) sender {
+    
+    PrefsController* pc = [[PrefsController alloc] init];
+    self.windowController = pc;
     [self.windowController showWindow:self];
- 
-    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
-    
-    // Register for push notifications.
-    [NSApp registerForRemoteNotificationTypes:NSRemoteNotificationTypeBadge];
-    
-    //NSString *name = [aNotification name];
-    //NSLog(@"didFinishLaunchingWithOptions: notification name %@", name);
-    [NSURLProtocol registerClass:URLProtocolHandler.class];
 
+    NSLog(@"Pref panel given focus.");
+}
+
+//
+//- (IBAction) showPrefPanel: (id) sender {
+//    if(!prefPanel) {
+//        BOOL successful = [NSBundle loadNibNamed:@"Preferences" owner:self];
+//
+//        //[prefPanel makeKeyAndOrderFront:nil];
+//        
+//        [NSApp runModalForWindow:prefPanel];
+//        [prefPanel orderOut:self];
+//        
+//        NSLog(@"Pref panel loaded with success status %d.", successful);
+//        return;
+//    }
+//    [prefPanel makeKeyAndOrderFront:nil];
+//    NSLog(@"Pref panel given focus.");
+//}
+
+- (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
     
+//    if([[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"] == nil) {
+//        [self showPrefPanel:nil];
+    
+        
+//        NSWindowController* prefWindow;
+//        prefWindow = [[NSWindowController alloc] initWithWindowNibName:@"MainMenu"];
+//        [prefWindow showWindow:nil];
+//        [self showPrefPanel:nil];
+
+//    }
+//    else {
+        self.windowController = [[WindowController alloc] init];
+        [self.windowController setWindowParams];
+        [self.windowController showWindow:self];
+        
+        [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+        
+        // Register for push notifications.
+        [NSApp registerForRemoteNotificationTypes:NSRemoteNotificationTypeBadge];
+        
+        //NSString *name = [aNotification name];
+        //NSLog(@"didFinishLaunchingWithOptions: notification name %@", name);
+        [NSURLProtocol registerClass:URLProtocolHandler.class];
+//    }
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
