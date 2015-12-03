@@ -510,7 +510,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fourroads-telligent-desktop-app";
 				PRODUCT_NAME = "The Ship";
-				PROVISIONING_PROFILE = "50760d97-4c40-4d21-8db5-4ff30bc7be03";
+				PROVISIONING_PROFILE = "0442fa98-1faf-4c2d-88d8-ebedeee72a96";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
