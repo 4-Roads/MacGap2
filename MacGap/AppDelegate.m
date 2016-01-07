@@ -41,12 +41,12 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    if([[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"] == nil) {
-        [self showPrefPanel:nil];
-    }
-    else {
+    //if([[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"] == nil) {
+    //    [self showPrefPanel:nil];
+    //}
+    //else {
         self.windowController = [[WindowController alloc] init];
-        [self.windowController setWindowParams];
+        [((WindowController*)self.windowController) setWindowParams];
         [self.windowController showWindow:self];
         
         [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -57,8 +57,10 @@
         //NSString *name = [aNotification name];
         //NSLog(@"didFinishLaunchingWithOptions: notification name %@", name);
         [NSURLProtocol registerClass:URLProtocolHandler.class];
-    }
+    //}
 }
+
+// [[UIApplication sharedApplication] unregisterForRemoteNotifications];
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
      shouldPresentNotification:(NSUserNotification *)notification
@@ -70,7 +72,7 @@
 {
     // NSLog(@"Notification - Clicked");
     
-    [self.windowController.webViewDelegate.app notificationActivated :notification];
+    [((WindowController*)self.windowController).webViewDelegate.app notificationActivated :notification];
 }
 
 - (void)application:(NSApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -111,7 +113,7 @@
 
 {
     // Only handles the simple case of the alert property having a simple string value.
-    
+   /*
     NSString *message = (NSString *)[apsDictionary valueForKey:(id)@"alert"];
     
     NSAlert *alert = [[NSAlert alloc] init];
@@ -126,7 +128,7 @@
         
         // Do any desired processing here when the OK button is clicked.
         
-    }
+    }*/
 }
 
 

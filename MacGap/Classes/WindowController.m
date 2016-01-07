@@ -56,7 +56,7 @@
 }
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    static NSUInteger requestCount = 0;
+  //  static NSUInteger requestCount = 0;
     //NSLog(@"Request #%lu: URL = %@", (unsigned long)requestCount++, request.URL.absoluteString);
     return NO;
 }
@@ -112,22 +112,22 @@
         //MAIN_DOMAIN = [[NSString alloc] initWithString:mainDomain];
         
         NSString* comunityUrl =  [[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"];
-        NSURL* url = [NSURL URLWithString:comunityUrl];
+        NSURL* lurl = [NSURL URLWithString:comunityUrl];
         
-        NSLog(url.host);
+        //NSLog(lurl.host);
         
         NSArray *hostParts = [[NSArray alloc]init];
-        hostParts = [url.host componentsSeparatedByString:@"."];
+        hostParts = [lurl.host componentsSeparatedByString:@"."];
         
         NSInteger partsCount = [hostParts count];
         if (partsCount > 2) {
             MAIN_DOMAIN = [NSString stringWithFormat:@"%@.%@", [hostParts objectAtIndex:(partsCount-2)], [hostParts objectAtIndex:(partsCount-1)]];
         } else if (partsCount == 2) {
-            MAIN_DOMAIN = [[NSString alloc] initWithString:url.host];
+            MAIN_DOMAIN = [[NSString alloc] initWithString:lurl.host];
         } else {
             NSLog(@"Invalid community URL");
         }
-        NSLog(MAIN_DOMAIN);
+        //NSLog(MAIN_DOMAIN);
     }
 }
 
@@ -164,11 +164,11 @@
 	self.webViewDelegate = [[WebViewDelegate alloc] initWithMenu:[NSApp mainMenu]];
     self.webViewDelegate.windowController = self;
     
-	[self.webView setFrameLoadDelegate:self.webViewDelegate];
-	[self.webView setUIDelegate:self.webViewDelegate];
-	[self.webView setResourceLoadDelegate:self.webViewDelegate];
-	[self.webView setDownloadDelegate:self.webViewDelegate];
-	[self.webView setPolicyDelegate:self.webViewDelegate];
+	//[self.webView setFrameLoadDelegate:self.webViewDelegate];
+	//[self.webView setUIDelegate:self.webViewDelegate];
+	//[self.webView setResourceLoadDelegate:self.webViewDelegate];
+	//[self.webView setDownloadDelegate:self.webViewDelegate];
+	//[self.webView setPolicyDelegate:self.webViewDelegate];
     [self.webView setDrawsBackground:NO];
     [self.webView setShouldCloseWithWindow:NO];
     [self.webView setGroupName:@"TelligentDesktop"];

@@ -141,8 +141,8 @@
 - (void)webView:(WebView *)sender frame:(WebFrame *)frame exceededDatabaseQuotaForSecurityOrigin:(id) origin database:(NSString *)databaseIdentifier
 {
     static const unsigned long long defaultQuota = 5 * 1024 * 1024;
-    if ([origin respondsToSelector: @selector(setQuota:)]) {
-        [origin performSelector:@selector(setQuota:) withObject:[NSNumber numberWithLongLong: defaultQuota]];
+    if ([origin respondsToSelector: @selector(setQuotes:)]) {
+        [origin performSelector:@selector(setQuotes:) withObject:[NSNumber numberWithLongLong: defaultQuota]];
     } else {
         NSLog(@"could not increase quota for %lld", defaultQuota);
     }

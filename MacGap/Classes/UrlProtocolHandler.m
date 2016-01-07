@@ -52,6 +52,13 @@
     [NSURLProtocol setProperty:@YES forKey:@"OsxNotification" inRequest:newRequest];
     
     self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+    
+    NSString * url = newRequest.URL.absoluteString;
+    
+    if ( [[url lowercaseString] hasSuffix : @"logout" ]){
+    
+        [[NSApplication sharedApplication] unregisterForRemoteNotifications];
+    }
 }
 
 + (NSString*)base64forData:(NSData*)theData {
