@@ -45,6 +45,8 @@
     if (self) {
       
     }
+    
+    
     return self;
 }
 
@@ -152,6 +154,9 @@
     [webPrefs setDeveloperExtrasEnabled:[[NSUserDefaults standardUserDefaults] boolForKey: @"developer"]];
     [webPrefs setOfflineWebApplicationCacheEnabled:YES];
     [webPrefs setWebGLEnabled:YES];
+    [webPrefs setDeveloperExtrasEnabled:NO];
+ 
+    [webView setMaintainsBackForwardList:YES];
     
     [self.webView setPreferences:webPrefs];
     
@@ -164,11 +169,11 @@
 	self.webViewDelegate = [[WebViewDelegate alloc] initWithMenu:[NSApp mainMenu]];
     self.webViewDelegate.windowController = self;
     
-	//[self.webView setFrameLoadDelegate:self.webViewDelegate];
-	//[self.webView setUIDelegate:self.webViewDelegate];
-	//[self.webView setResourceLoadDelegate:self.webViewDelegate];
-	//[self.webView setDownloadDelegate:self.webViewDelegate];
-	//[self.webView setPolicyDelegate:self.webViewDelegate];
+	[self.webView setFrameLoadDelegate:self.webViewDelegate];
+	[self.webView setUIDelegate:self.webViewDelegate];
+	[self.webView setResourceLoadDelegate:self.webViewDelegate];
+	[self.webView setDownloadDelegate:self.webViewDelegate];
+	[self.webView setPolicyDelegate:self.webViewDelegate];
     [self.webView setDrawsBackground:NO];
     [self.webView setShouldCloseWithWindow:NO];
     [self.webView setGroupName:@"TelligentDesktop"];

@@ -13,7 +13,7 @@
 
 @implementation WebViewDelegate
 
-@synthesize windowController, app, menu, window;
+@synthesize windowController, app, menu, window , scriptObject;
 
 - (id) initWithMenu:(NSMenu*)aMenu
 {
@@ -197,7 +197,6 @@
     [listener ignore];
 }
 
-
 - (void) webView: (WebView*) webView didCreateJavaScriptContext:(JSContext *)context forFrame:(WebFrame *)frame
 {
     windowController.jsContext = context;
@@ -230,7 +229,30 @@
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
+    // Only report feedback for the main frame.
+    if (frame == [sender mainFrame]){
+        NSString *currenturl = [[[[frame dataSource] request] URL] absoluteString];
+        [self.windowController.urlTextBox setStringValue:currenturl];
+        
+        scriptObject = [sender windowScriptObject];
+        
+        [scriptObject setValue:self forKey:@"MyApp"];
+        
+        [scriptObject evaluateWebScript:@"console = { log: function(msg) { MyApp.consoleLog_(msg); } }"       ];
+    }
+    
     [Event triggerEvent:@"MacGap.load.complete" forWebView:sender];
 }
 
+- (void)consoleLog:(NSString *)aMessage {
+    NSLog(@"JSLog: %@", aMessage);
+}
+
++ (BOOL)isSelectorExcludedFromWebScript:(SEL)aSelector {
+    if (aSelector == @selector(consoleLog:)) {
+        return NO;
+    }
+    
+    return YES;
+}
 @end

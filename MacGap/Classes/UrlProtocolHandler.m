@@ -41,12 +41,15 @@
 
 - (void)startLoading
 {
+    
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
     
     AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
     
     NSString* newStr = [ URLProtocolHandler base64forData  :  appDelegate.token];
 
+    [newRequest setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2" forHTTPHeaderField:@"User-Agent"];
+    
     [newRequest addValue:newStr forHTTPHeaderField:@"OsxNotification"];
     
     [NSURLProtocol setProperty:@YES forKey:@"OsxNotification" inRequest:newRequest];
