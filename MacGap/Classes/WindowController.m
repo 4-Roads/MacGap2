@@ -154,7 +154,7 @@
     [webPrefs setDeveloperExtrasEnabled:[[NSUserDefaults standardUserDefaults] boolForKey: @"developer"]];
     [webPrefs setOfflineWebApplicationCacheEnabled:YES];
     [webPrefs setWebGLEnabled:YES];
-    [webPrefs setDeveloperExtrasEnabled:NO];
+    [webPrefs setDeveloperExtrasEnabled:YES];
  
     [webView setMaintainsBackForwardList:YES];
     
