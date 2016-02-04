@@ -39,7 +39,7 @@
         self.tempPath = NSTemporaryDirectory();
         self.droppedFiles = nil;
         self.notifications = [NSMutableArray arrayWithCapacity: 2];
-        
+
         [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
                                                                selector: @selector(receiveSleepNotification:)
                                                                    name: NSWorkspaceWillSleepNotification object: NULL];
@@ -83,7 +83,7 @@
     self.droppedFiles = files;
 }
 - (void)setCustomUserAgent:(NSString *)userAgentString {
-    [self.webView setCustomUserAgent: userAgentString];
+   [self.webView setCustomUserAgent: userAgentString];
 }
 
 - (void) openURL:(NSString*)url {
@@ -183,8 +183,6 @@
 
 - (void) notificationActivated: (NSUserNotification*)notification {
     
-    //NSLog(@"Notification - Caught");
-    
     NSString* uid = [notification.userInfo valueForKey:@"id"];
     NSUInteger noteIdx = [self.notifications indexOfObjectPassingTest: ^BOOL(NSDictionary* obj, NSUInteger idx, BOOL *stop) {
         if ( [[obj valueForKey:@"id"] isEqualToString:uid]) {
@@ -198,8 +196,6 @@
     if (noteIdx != NSNotFound)
         [self.notifications removeObjectAtIndex:noteIdx];
     }];
-    
-
 }
 
 

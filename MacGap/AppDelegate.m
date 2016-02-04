@@ -41,10 +41,7 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    //if([[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"] == nil) {
-    //    [self showPrefPanel:nil];
-    //}
-    //else {
+
         self.windowController = [[WindowController alloc] init];
         [((WindowController*)self.windowController) setWindowParams];
         [self.windowController showWindow:self];
@@ -53,14 +50,12 @@
         
         // Register for push notifications.
         [NSApp registerForRemoteNotificationTypes:NSRemoteNotificationTypeBadge];
-        
-        //NSString *name = [aNotification name];
-        //NSLog(@"didFinishLaunchingWithOptions: notification name %@", name);
+    
         [NSURLProtocol registerClass:URLProtocolHandler.class];
-    //}
-}
 
-// [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+   
+      [self handleNotificationRedirect : aNotification.userInfo];
+}
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
      shouldPresentNotification:(NSUserNotification *)notification
@@ -70,89 +65,58 @@
 
 - (void) userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
 {
-    // NSLog(@"Notification - Clicked");
-    
+
     [((WindowController*)self.windowController).webViewDelegate.app notificationActivated :notification];
+    
+    [self handleNotificationRedirect : notification.userInfo];
 }
 
 - (void)application:(NSApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 {
-    
-    //NSLog(@"%@ with token = %@", NSStringFromSelector(_cmd), deviceToken);
-    
-    // store the token, the javascript wrapper will send it when the application starts using the index.html
-    
     self.token = deviceToken;
-    
 }
 
 - (void)application:(NSApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 
 {
-    
     NSLog(@"%@ with error = %@", NSStringFromSelector(_cmd), error);
-    
 }
 
-
-- (void)downloadDataFromProvider
-
+ -(void)application:(NSApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    
-    // Real apps would connect to the provider and download any waiting data.
-    
-    // Apps typically check in with the provider when first launched and
-    
-    // again when a push notification is received.
-    
+    [self handleNotificationRedirect : userInfo];
 }
 
-
-- (void)showNotificationAlert:(NSDictionary *)apsDictionary
-
+-(void) handleNotificationRedirect:(NSDictionary *)data
 {
-    // Only handles the simple case of the alert property having a simple string value.
-   /*
-    NSString *message = (NSString *)[apsDictionary valueForKey:(id)@"alert"];
+    if (data != nil){
+        @try{
+        NSString *jsonString =[data valueForKey:@"json-content"];
     
-    NSAlert *alert = [[NSAlert alloc] init];
-    
-    [alert addButtonWithTitle:@"OK"];
-    
-    [alert setMessageText:message];
-    
-    [alert setAlertStyle:NSInformationalAlertStyle];
-    
-    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        if ([jsonString length] != 0){
+            NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+            
+            NSError *jsonError;
         
-        // Do any desired processing here when the OK button is clicked.
+            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers|NSJSONReadingAllowFragments error:&jsonError];
         
-    }*/
-}
-
-
-- (void)application:(NSApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-
-{
-    
-    //NSLog(@"%@", NSStringFromSelector(_cmd));
-    
-    NSDictionary *apsDictionary = [userInfo valueForKey:@"aps"];
-    
-    if (apsDictionary != nil) {
-        
-        // Show the alert.
-        [self showNotificationAlert:apsDictionary];
-        
-
-        // Get updated content from provider.
-        [self downloadDataFromProvider];
-        
+            if(jsonObject !=nil){
+            
+                NSString *urlNav =[jsonObject objectForKey:@"ContentUrl"];
+            
+                self.windowController.url = [[NSURL alloc] initWithString:urlNav];
+          
+                [self.windowController.webView setMainFrameURL:urlNav];
+            }
+        }
+        }
+        @catch(NSException *ex){
+          //Do nothing
+        }
     }
-    
-}
 
+}
 
 
 @end

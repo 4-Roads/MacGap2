@@ -13,10 +13,12 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate,NSUserNotificationCenterDelegate>
 {
+   
 }
 - (IBAction) showPrefPanel: (id) sender;
+- (void) handleNotificationRedirect:(NSDictionary *)data;
 
-@property (retain, nonatomic) NSWindowController *windowController;
+@property (retain, nonatomic) WindowController *windowController;
 @property (retain) NSData *token;
 
 @end

@@ -68,9 +68,14 @@
     [self loadPreferences];
     
     self = [super initWithWindowNibName:@"MainWindow"];
+        
+    if ([[self.url absoluteString ]length] == 0){
+        
+        self.url = [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"]];
+    }
     
-    self.url = [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"]];
-  
+
+    
     //self.url = [NSURL URLWithString:self.settings[@"main"] ];
     
     [self.window setFrameAutosaveName:@"MacGapWindow"];

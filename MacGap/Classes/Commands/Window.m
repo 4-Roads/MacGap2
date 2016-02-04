@@ -162,6 +162,8 @@
                                              selector:@selector(windowClosed:)
                                                  name:NSWindowWillCloseNotification
                                                object: self.windowController.window];
+    
+
 }
 
 - (void) windowClosed: (NSNotification*)notification

@@ -22,8 +22,6 @@
     //NSLog(@"Request #%lu: URL = %@", (unsigned long)requestCount++, request.URL.absoluteString);
     //Everything gets routed through here
     //If the URL is to our site then add the header, otherwise fire up safari
-
-    
     if ([NSURLProtocol propertyForKey:@"OsxNotification" inRequest:request] != nil)
     {
        return NO;
@@ -113,7 +111,8 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
+    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection

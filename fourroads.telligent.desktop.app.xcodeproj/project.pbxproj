@@ -204,8 +204,8 @@
 				22B1CF1E1937734B00D2C294 /* WebViewDelegate.h */,
 				22B1CF1F1937734B00D2C294 /* WebViewDelegate.m */,
 				22B1CF201937734B00D2C294 /* WindowController.h */,
-				22B1CF211937734B00D2C294 /* WindowController.m */,
 				10EE92951B99BECF008F22F8 /* UrlProtocolHandler.m */,
+				22B1CF211937734B00D2C294 /* WindowController.m */,
 				10EE92971B99BEEE008F22F8 /* UrlProtocolHandler.h */,
 			);
 			path = Classes;

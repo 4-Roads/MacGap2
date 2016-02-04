@@ -26,11 +26,6 @@
     return self;
 }
 
-- (NSURLRequest *)webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource {
-    request = [NSURLRequest requestWithURL:[request URL] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:[request timeoutInterval]];
-    return request;
-}
-
 - (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener
 {
     WebNavigationType navigationType = [[actionInformation valueForKey:@"WebActionNavigationTypeKey"] integerValue];
@@ -230,6 +225,7 @@
         NSString *exportName = [obj exportName];
         context[kWebScriptNamespace][exportName] = obj;
     }
+    
 }
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
@@ -247,6 +243,13 @@
     }
     
     [Event triggerEvent:@"MacGap.load.complete" forWebView:sender];
+    
+    //Use some Jquery to get the notification count
+    
+    NSString *title = [sender stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"$('.navigation-list.user-links .popup-list-count').text();"]];
+    
+    NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
+    [tile setBadgeLabel:title];
 }
 
 - (void)consoleLog:(NSString *)aMessage {
