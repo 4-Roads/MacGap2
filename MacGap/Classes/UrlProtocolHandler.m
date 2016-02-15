@@ -36,30 +36,32 @@
 }
 
 
-
 - (void)startLoading
 {
-    
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
-    
-    NSString* newStr = [ URLProtocolHandler base64forData  :  appDelegate.token];
 
-    [newRequest setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2" forHTTPHeaderField:@"User-Agent"];
+    NSString * url = [newRequest.URL.relativePath lowercaseString];
+
+    if ( ![url  hasPrefix: @"/login" ] && ![url  hasPrefix : @"/utility" ]&& ![url  hasPrefix : @"/cfs" ]){
+
+        AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
     
-    [newRequest addValue:newStr forHTTPHeaderField:@"OsxNotification"];
+        NSString* newStr = [ URLProtocolHandler base64forData  :  appDelegate.token];
+
+        [newRequest setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2" forHTTPHeaderField:@"User-Agent"];
     
+        [newRequest addValue:newStr forHTTPHeaderField:@"OsxNotification"];
+      }
+        if ( [url  hasPrefix : @"/logout" ]){
+            
+            [[NSApplication sharedApplication] unregisterForRemoteNotifications];
+        }
+   
     [NSURLProtocol setProperty:@YES forKey:@"OsxNotification" inRequest:newRequest];
     
     self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+
     
-    NSString * url = newRequest.URL.absoluteString;
-    
-    if ( [[url lowercaseString] hasSuffix : @"logout" ]){
-    
-        [[NSApplication sharedApplication] unregisterForRemoteNotifications];
-    }
 }
 
 + (NSString*)base64forData:(NSData*)theData {

@@ -240,16 +240,19 @@
         [scriptObject setValue:self forKey:@"MyApp"];
         
         [scriptObject evaluateWebScript:@"console = { log: function(msg) { MyApp.consoleLog_(msg); } }"       ];
+        
+        //Use some Jquery to get the notification count
+        if ([currenturl containsString: MAIN_DOMAIN]){
+            NSString *title = [sender stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"try{$('.navigation-list.user-links .popup-list-count').text();}catch(err){}"]];
+        
+            NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
+            [tile setBadgeLabel:title];
+        }
     }
     
     [Event triggerEvent:@"MacGap.load.complete" forWebView:sender];
     
-    //Use some Jquery to get the notification count
-    
-    NSString *title = [sender stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"$('.navigation-list.user-links .popup-list-count').text();"]];
-    
-    NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
-    [tile setBadgeLabel:title];
+  
 }
 
 - (void)consoleLog:(NSString *)aMessage {
