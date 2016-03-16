@@ -73,9 +73,7 @@
         
         self.url = [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"]];
     }
-    
 
-    
     //self.url = [NSURL URLWithString:self.settings[@"main"] ];
     
     [self.window setFrameAutosaveName:@"MacGapWindow"];

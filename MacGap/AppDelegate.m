@@ -15,8 +15,11 @@
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
+    NSString* url = [[NSUserDefaults standardUserDefaults] stringForKey:@"communityUrl"];
     // Insert code here to initialize your application
-
+    if (url.length == 0){
+        [[NSUserDefaults standardUserDefaults] setValue:@"https://ship.wearesocial.net/" forKey:@"communityUrl"];
+    }
 }
 
 -(BOOL)applicationShouldHandleReopen:(NSApplication*)application
@@ -41,9 +44,10 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-
         self.windowController = [[WindowController alloc] init];
         [((WindowController*)self.windowController) setWindowParams];
+        [self.windowController.window setBackgroundColor: NSColor.whiteColor];
+    
         [self.windowController showWindow:self];
         
         [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -92,8 +96,12 @@
 {
     if (data != nil){
         @try{
-        NSString *jsonString =[data valueForKey:@"json-content"];
-    
+            NSString *jsonString = [data valueForKey:@"json-content"];
+            
+            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+            
+            jsonString = [jsonString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            
         if ([jsonString length] != 0){
             NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
             
@@ -104,10 +112,10 @@
             if(jsonObject !=nil){
             
                 NSString *urlNav =[jsonObject objectForKey:@"ContentUrl"];
-            
-                self.windowController.url = [[NSURL alloc] initWithString:urlNav];
-          
-                [self.windowController.webView setMainFrameURL:urlNav];
+                
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlNav]];
+                
+                [self.windowController.webView.mainFrame loadRequest:request];
             }
         }
         }

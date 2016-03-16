@@ -20,6 +20,7 @@ NSString *MAIN_DOMAIN;
     Menu* menu;
     App* app;
     WebScriptObject* scriptObject;
+    NSTimer *notificationRefreshTimmer;
 }
 
 @property (nonatomic, retain) WindowController *windowController;
@@ -28,6 +29,7 @@ NSString *MAIN_DOMAIN;
 @property (nonatomic, retain) App* app;
 @property (nonatomic, retain) WebScriptObject* scriptObject;
 - (id) initWithMenu:(NSMenu*)menu;
+-(void)onRefreshCounter:(NSTimer *)timer;
 - (void)webView:(WebView *)webView
 decidePolicyForNewWindowAction:(NSDictionary *)actionInformation
         request:(NSURLRequest *)request

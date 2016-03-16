@@ -30,8 +30,6 @@
 {
     WebNavigationType navigationType = [[actionInformation valueForKey:@"WebActionNavigationTypeKey"] integerValue];
     
-    //NSLog(@"decidePolicyForNavigationAction %ld", (long)navigationType);
-    
     if(navigationType == WebNavigationTypeLinkClicked){
         
         NSString *requestPath = [[request URL] absoluteString];
@@ -45,7 +43,7 @@
                 [listener ignore];
                 return;
             }
-        } else if([requestPath hasPrefix:@"mailto:"])
+        } else if([requestPath hasPrefix:@"mailto:"] || [requestPath hasPrefix:@"skype:"])
         {
             NSURL *externalUrl = [NSURL URLWithString:requestPath];
             [[NSWorkspace sharedWorkspace] openURL:externalUrl];
@@ -230,6 +228,10 @@
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
+    if (notificationRefreshTimmer != nil){
+        [notificationRefreshTimmer invalidate];
+    }
+    
     // Only report feedback for the main frame.
     if (frame == [sender mainFrame]){
         NSString *currenturl = [[[[frame dataSource] request] URL] absoluteString];
@@ -243,16 +245,23 @@
         
         //Use some Jquery to get the notification count
         if ([currenturl containsString: MAIN_DOMAIN]){
-            NSString *title = [sender stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"try{$('.navigation-list.user-links .popup-list-count').text();}catch(err){}"]];
-        
-            NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
-            [tile setBadgeLabel:title];
+            
+            notificationRefreshTimmer = [NSTimer scheduledTimerWithTimeInterval: 5.0
+                                             target: self
+                                           selector:@selector(onRefreshCounter:)
+                                           userInfo: nil repeats:YES];
         }
     }
     
     [Event triggerEvent:@"MacGap.load.complete" forWebView:sender];
     
   
+}
+-(void)onRefreshCounter:(NSTimer *)timer {
+    NSString *title = [self.windowController.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"try{$('.navigation-list.user-links .popup-list-count').text();}catch(err){}"]];
+    
+    NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
+    [tile setBadgeLabel:title];
 }
 
 - (void)consoleLog:(NSString *)aMessage {
