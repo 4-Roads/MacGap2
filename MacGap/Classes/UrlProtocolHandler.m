@@ -58,6 +58,7 @@
         }
    
     [NSURLProtocol setProperty:@YES forKey:@"OsxNotification" inRequest:newRequest];
+
     
     self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
 
@@ -114,7 +115,6 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
-    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -123,4 +123,17 @@
     self.connection = nil;
 }
 
+//JHandle redirects
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+    if (response) {
+        NSMutableURLRequest *redirect = [request mutableCopy];
+        
+        // THE IMPORTANT PART
+        [self.client URLProtocol:self wasRedirectedToRequest:redirect redirectResponse:response];
+        
+        return redirect;
+    }
+    
+    return request;
+}
 @end

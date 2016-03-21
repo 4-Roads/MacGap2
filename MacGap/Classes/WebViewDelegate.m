@@ -234,7 +234,7 @@
     
     // Only report feedback for the main frame.
     if (frame == [sender mainFrame]){
-        NSString *currenturl = [[[[frame dataSource] request] URL] absoluteString];
+        NSString *currenturl = [[[[frame dataSource] response] URL] absoluteString];
         [self.windowController.urlTextBox setStringValue:currenturl];
         
         scriptObject = [sender windowScriptObject];

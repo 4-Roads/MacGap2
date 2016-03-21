@@ -53,7 +53,7 @@
         [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
         
         // Register for push notifications.
-        [NSApp registerForRemoteNotificationTypes:NSRemoteNotificationTypeBadge];
+        [NSApp registerForRemoteNotificationTypes:NSRemoteNotificationTypeBadge|NSRemoteNotificationTypeAlert|NSRemoteNotificationTypeSound];
     
         [NSURLProtocol registerClass:URLProtocolHandler.class];
 
@@ -89,7 +89,7 @@
 
  -(void)application:(NSApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    [self handleNotificationRedirect : userInfo];
+    //called when the notification arrives
 }
 
 -(void) handleNotificationRedirect:(NSDictionary *)data
@@ -97,10 +97,7 @@
     if (data != nil){
         @try{
             NSString *jsonString = [data valueForKey:@"json-content"];
-            
-            jsonString = [jsonString stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-            
-            jsonString = [jsonString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
             
         if ([jsonString length] != 0){
             NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
@@ -111,11 +108,12 @@
         
             if(jsonObject !=nil){
             
-                NSString *urlNav =[jsonObject objectForKey:@"ContentUrl"];
+                NSMutableString *urlNav =[jsonObject objectForKey:@"ContentUrl"];
                 
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlNav]];
                 
-                [self.windowController.webView.mainFrame loadRequest:request];
+                urlNav = [NSMutableString stringWithFormat:@"window.location = \'%@\';", urlNav];
+  
+                [self.windowController.webView stringByEvaluatingJavaScriptFromString:urlNav];
             }
         }
         }
