@@ -20,6 +20,7 @@
     if (url.length == 0){
         [[NSUserDefaults standardUserDefaults] setValue:@"https://ship.wearesocial.net/" forKey:@"communityUrl"];
     }
+    
 }
 
 -(BOOL)applicationShouldHandleReopen:(NSApplication*)application
@@ -56,9 +57,9 @@
         [NSApp registerForRemoteNotificationTypes:NSRemoteNotificationTypeBadge|NSRemoteNotificationTypeAlert|NSRemoteNotificationTypeSound];
     
         [NSURLProtocol registerClass:URLProtocolHandler.class];
-
-   
+    
       [self handleNotificationRedirect : aNotification.userInfo];
+ 
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
@@ -89,7 +90,13 @@
 
  -(void)application:(NSApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    //called when the notification arrives
+    // user tapped notification while app was in background
+    //if (![application isActive]) {
+        //[self handleNotificationRedirect : userInfo];
+    //}
+    
+    // App is in UIApplicationStateActive (running in foreground)
+    
 }
 
 -(void) handleNotificationRedirect:(NSDictionary *)data
@@ -110,10 +117,16 @@
             
                 NSMutableString *urlNav =[jsonObject objectForKey:@"ContentUrl"];
                 
+                self.windowController.url =[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:urlNav]];
                 
                 urlNav = [NSMutableString stringWithFormat:@"window.location = \'%@\';", urlNav];
   
                 [self.windowController.webView stringByEvaluatingJavaScriptFromString:urlNav];
+                
+                [self.windowController showWindow:self];
+                
+                
+                
             }
         }
         }
